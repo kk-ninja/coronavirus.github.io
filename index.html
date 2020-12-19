@@ -103,8 +103,24 @@
 					
 			
 
-				<div class="stats_india">
-					
+				<div class="country_title" style="display: none;"></div>
+				<div class="stat_tbl_block" style="display: none;">
+					<table class='highlight responsive-table stat_tbl_head'><thead>
+				          <tr style='position: sticky; top: 0;'>
+				             	<th>State</th>
+				              <th class='deep-purple-text text-lighten-2'>Total Confirm</th>
+				              <th class='teal-text'>Total Recovered</th>
+				              <th class='red-text text-lighten-2'>Total Deaths</th>
+				              <th class='orange-text text-lighten-2'>Active</th>
+				          </tr>
+				        </thead>
+				        <tbody class='stats_tbl_body'>
+							<span class="stats_india">
+								
+							</span>
+						</tbody>
+
+				</table>
 				</div>
 			</div>
 					
@@ -283,32 +299,32 @@
 		}
 		function covidDataInStates(dataIndiaStats,country)
 		{
-			/*<h5>India<small><span class="lastUpdateStateIndia" style="font-size: 12px;"></span></small></h5>*/
-			$(".stats_tbl_body").remove();
-			$(".stat_tbl_head").remove();
-			$(".stat_block").remove();
+			$(".tbl-trs").remove();
 			var text = "";
 			var flag = 0;
 			if(flag == 0)
 			{
-				text = text+"<div class='stat_block'><h5>"+country+"</h5><table class='highlight responsive-table stat_tbl_head'><thead>"+
-				          "<tr style='position: sticky; top: 0;'>"+
-				              "<th>State</th>"+
-				              "<th class='deep-purple-text text-lighten-2'>Total Confirm</th>"+
-				              "<th class='teal-text'>Total Recovered</th>"+
-				              "<th class='red-text text-lighten-2'>Total Deaths</th>"+
-				              "<th class='orange-text text-lighten-2'>Active</th>"+
-				          "</tr>"+
-				        "</thead>";
+					
+				$(".country_title").css("display" , "block");
+				$(".stat_tbl_block").css("display" , "block");
+				$(".stat_tbl_country_name").remove();
+				$(".country_title").append("<h5 class='stat_tbl_country_name'>"+country+"</h5>")
+
+
+				text = text;
 			}
 			
 			if(dataIndiaStats == null || dataIndiaStats == "")
 			{
-				text = text+"<tbody class='stats_tbl_body'><tr style='text-align:center;'>"+
-				            	"<td colspan='5'><center class='red-text'><h5 >Oops!<h5>Data Not Available!</center></td>"+
+				text = text+"<tr class='tbl-trs' style='text-align:center;'>"+
+				            	"<td>null</td>"+
+				            	"<td>null</td>"+
+				            	"<td>null</td>"+
+				            	"<td>null</td>"+
+				            	"<td>null</td>"+
 				   
-				          	"</tr></tbody></table>";
-						$(".stats_india").append(text);
+				          	"</tr>";
+						$(".stats_tbl_body").append(text);
 			}
 			else
 			{
@@ -318,31 +334,31 @@
 					if(dataIndiaStats[i].provinceState == "null" || dataIndiaStats[i].provinceState == "" || dataIndiaStats[i].provinceState == null)
 					{
 						console.log("kks");
-						text = text+"<tbody class='stats_tbl_body'><tr>"+
+						text = text+"<tr class='tbl-trs'>"+
 				            	"<td>"+ dataIndiaStats[i].countryRegion +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].confirmed +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].recovered +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].deaths +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].active +"</td>"+
-				          	"</tr></tbody>";
+				          	"</tr>";
 						
 						
 					}
 					else
 					{
-						text = text+"<tbody class='stats_tbl_body'><tr>"+
+						text = text+"<tr class='tbl-trs'>"+
 				            	"<td>"+ dataIndiaStats[i].provinceState +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].confirmed +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].recovered +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].deaths +"</td>"+
 				            	"<td>"+ dataIndiaStats[i].active +"</td>"+
-				          	"</tr></tbody>";
+				          	"</tr>";
 						
 					}
 					
 				}
-				text = text+"</table></div>";
-				$(".stats_india").append(text);
+				text = text;
+				$(".stats_tbl_body").append(text);
 			}
 			
 		
